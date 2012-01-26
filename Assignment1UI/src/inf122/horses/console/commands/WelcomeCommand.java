@@ -3,18 +3,19 @@
 // Informatics 122 Winter 2012
 // Assignment #1: Who's Gonna Ride Your Wild Horses?
 //
-// Implements a "phantom" command called WELCOME, which is not supported
-// in the user interface, but is instead used to generate a welcome message
-// on startup.
+// Implements the WELCOME command
 
 package inf122.horses.console.commands;
 
 import inf122.horses.console.RacetrackState;
+import inf122.horses.console.results.CommandResult;
+import inf122.horses.console.results.WelcomeCommandResult;
 
 
 public class WelcomeCommand implements Command
 {
-	public void execute(RacetrackState state)
+	public CommandResult execute(RacetrackState state)
 	{
+		return new WelcomeCommandResult();
 	}
 }

@@ -8,11 +8,15 @@
 package inf122.horses.console.commands;
 
 import inf122.horses.console.RacetrackState;
+import inf122.horses.console.results.CommandResult;
+import inf122.horses.console.results.UnimplementedCommandResult;
 
 
 public class TriCommand implements Command
 {
-	public void execute(RacetrackState state)
+	public CommandResult execute(RacetrackState state)
 	{
+		// Inf122TBD: Return an actual result
+		return new UnimplementedCommandResult();
 	}
 }

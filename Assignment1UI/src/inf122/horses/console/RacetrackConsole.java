@@ -11,6 +11,7 @@ import inf122.horses.console.commands.StopCommand;
 import inf122.horses.console.commands.WelcomeCommand;
 import inf122.horses.console.parsers.CommandParser;
 import inf122.horses.console.parsers.InvalidCommandException;
+import inf122.horses.console.results.CommandResult;
 import java.util.Scanner;
 
 
@@ -42,7 +43,18 @@ public class RacetrackConsole
 			{
 				try
 				{
-					commandParser.parse(commandString).execute(state);
+					CommandResult result =
+						commandParser.parse(commandString).execute(state);
+					
+					for (String outputLine : result.getConsoleOutput())
+					{
+						System.out.println(outputLine);
+					}
+					
+					if (result.stopConsole())
+					{
+						break;
+					}
 				}
 				catch (InvalidCommandException e)
 				{
