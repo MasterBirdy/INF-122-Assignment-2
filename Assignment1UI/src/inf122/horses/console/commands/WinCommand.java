@@ -13,13 +13,11 @@ import inf122.horses.console.state.RacetrackState;
 import java.util.Set;
 
 
-public class WinCommand implements Command
+public class WinCommand extends SingleHorseBetCommand
 {
 	public WinCommand(int horseNumber, int amountPerHorse, Set<String> horseNumbers)
 	{
-		this.horseNumber = horseNumber;
-		this.amountPerHorse = amountPerHorse;
-		this.horseNumbers = horseNumbers;
+		super(horseNumber, amountPerHorse, horseNumbers);
 	}
 	
 	
@@ -28,9 +26,4 @@ public class WinCommand implements Command
 		// Inf122TBD: Return an actual result
 		return new UnimplementedCommandResult();
 	}
-	
-	
-	private int horseNumber;
-	private int amountPerHorse;
-	private Set<String> horseNumbers;
 }
