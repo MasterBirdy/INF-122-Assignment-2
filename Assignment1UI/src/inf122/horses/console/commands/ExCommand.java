@@ -18,10 +18,20 @@ public class ExCommand implements Command
 		int raceNumber, int amount,
 		String firstHorseNumber, String secondHorseNumber)
 	{
+		this(raceNumber, amount, firstHorseNumber, secondHorseNumber, false);
+	}
+	
+	
+	protected ExCommand(
+		int raceNumber, int amount,
+		String firstHorseNumber, String secondHorseNumber,
+		boolean isBoxed)
+	{		
 		this.raceNumber = raceNumber;
 		this.amount = amount;
 		this.firstHorseNumber = firstHorseNumber;
 		this.secondHorseNumber = secondHorseNumber;
+		this.isBoxed = isBoxed;
 	}
 	
 	
@@ -36,4 +46,5 @@ public class ExCommand implements Command
 	private int amount;
 	private String firstHorseNumber;
 	private String secondHorseNumber;
+	private boolean isBoxed;
 }

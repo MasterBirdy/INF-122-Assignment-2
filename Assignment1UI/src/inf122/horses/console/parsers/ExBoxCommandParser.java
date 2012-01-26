@@ -8,12 +8,17 @@
 package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
+import inf122.horses.console.commands.ExBoxCommand;
 
 
-class ExBoxCommandParser implements KnownCommandParser
+class ExBoxCommandParser extends ExCommandParser
 {
-	public Command parse(String[] commandWords)
+	protected Command createCommand(
+		int raceNumber, int amount,
+		String firstHorseNumber, String secondHorseNumber)
 	{
-		return null;
+		return new ExBoxCommand(
+			raceNumber, amount,
+			firstHorseNumber, secondHorseNumber);
 	}
 }

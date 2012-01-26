@@ -40,10 +40,20 @@ class ExCommandParser extends BaseKnownCommandParser
 		{
 			return parseFailure();
 		}
-		
-		return new ExCommand(
+
+		return createCommand(
 			raceNumber, amount,
 			horseNumbers.get(0), horseNumbers.get(1));
+	}
+	
+	
+	protected Command createCommand(
+		int raceNumber, int amount,
+		String firstHorseNumber, String secondHorseNumber)
+	{
+		return new ExCommand(
+			raceNumber, amount,
+			firstHorseNumber, secondHorseNumber);
 	}
 
 

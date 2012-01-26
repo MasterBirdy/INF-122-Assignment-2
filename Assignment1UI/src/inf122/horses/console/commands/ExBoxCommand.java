@@ -7,16 +7,13 @@
 
 package inf122.horses.console.commands;
 
-import inf122.horses.console.results.CommandResult;
-import inf122.horses.console.results.UnimplementedCommandResult;
-import inf122.horses.console.state.RacetrackState;
 
-
-public class ExBoxCommand implements Command
+public class ExBoxCommand extends ExCommand
 {
-	public CommandResult execute(RacetrackState state)
+	public ExBoxCommand(
+		int raceNumber, int amount,
+		String firstHorseNumber, String secondHorseNumber)		
 	{
-		// Inf122TBD: Return an actual result
-		return new UnimplementedCommandResult();
+		super(raceNumber, amount, firstHorseNumber, secondHorseNumber, true);
 	}
 }
