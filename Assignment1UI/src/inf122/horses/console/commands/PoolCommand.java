@@ -14,9 +14,20 @@ import inf122.horses.console.state.RacetrackState;
 
 public class PoolCommand implements Command
 {
+	public PoolCommand(BetType betType, int raceNumber)
+	{
+		this.betType = betType;
+		this.raceNumber = raceNumber;
+	}
+	
+	
 	public CommandResult execute(RacetrackState state)
 	{
 		// Inf122TBD: Return an actual result
 		return new UnimplementedCommandResult();
 	}
+	
+	
+	private BetType betType;
+	private int raceNumber;
 }
