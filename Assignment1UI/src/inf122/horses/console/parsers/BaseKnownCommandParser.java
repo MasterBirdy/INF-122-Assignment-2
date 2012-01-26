@@ -16,7 +16,29 @@ abstract class BaseKnownCommandParser implements KnownCommandParser
 	public abstract Command parse(String[] commandWords);
 	
 	
-	protected Command parseFailure()
+	protected int parseIntInRange(String commandWord, int min, int max)
+	{
+		try
+		{
+			int value = Integer.parseInt(commandWord);
+			
+			if (value < min || value > max)
+			{
+				return parseFailure();
+			}
+			else
+			{
+				return value;
+			}
+		}
+		catch (NumberFormatException e)
+		{
+			return parseFailure();
+		}
+	}
+	
+	
+	protected <T> T parseFailure()
 	{
 		throw new InvalidCommandException(getFormatMessages());
 	}
