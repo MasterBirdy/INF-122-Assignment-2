@@ -8,12 +8,13 @@
 package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
+import inf122.horses.console.commands.WelcomeCommand;
 
 
 class WelcomeCommandParser implements KnownCommandParser
 {
 	public Command parse(String[] commandWords)
 	{
-		return null;
+		return new WelcomeCommand();
 	}
 }
