@@ -34,6 +34,11 @@ class ResultsCommandParser extends BaseKnownCommandParser
 		List<String> horseNumbers = horseNumbersParser.parse(
 			Arrays.copyOfRange(commandWords, 2, commandWords.length));
 		
+		if (horseNumbers.size() != 3)
+		{
+			return parseFailure();
+		}
+		
 		return new ResultsCommand(
 			raceNumber, horseNumbers.get(0),
 			horseNumbers.get(1), horseNumbers.get(2));
