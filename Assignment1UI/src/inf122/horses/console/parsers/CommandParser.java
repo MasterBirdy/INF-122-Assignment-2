@@ -61,7 +61,6 @@ public class CommandParser
 		parsers.put("CLAIM", new ClaimCommandParser());
 		parsers.put("CANCEL", new CancelCommandParser());
 		parsers.put("POOL", new PoolCommandParser());
-		parsers.put("PAY", new PayCommandParser());
 		parsers.put("STOP", new StopCommandParser());
 		parsers.put("WELCOME", new WelcomeCommandParser());
 		
