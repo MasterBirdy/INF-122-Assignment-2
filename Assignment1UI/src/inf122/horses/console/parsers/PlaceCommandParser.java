@@ -8,12 +8,21 @@
 package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
+import inf122.horses.console.commands.PlaceCommand;
+import java.util.Set;
 
 
-class PlaceCommandParser implements KnownCommandParser
+class PlaceCommandParser extends SingleHorseBetCommandParser
 {
-	public Command parse(String[] commandWords)
+	protected String getBetType()
 	{
-		return null;
+		return "PLACE";
+	}
+	
+	
+	protected Command createCommand(
+		int raceNumber, int amountPerHorse, Set<String> horseNumbers)
+	{
+		return new PlaceCommand(raceNumber, amountPerHorse, horseNumbers);
 	}
 }
