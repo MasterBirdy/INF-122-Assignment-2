@@ -8,11 +8,17 @@
 
 package inf122.horses.console;
 
+import inf122.horses.console.io.ConsoleCommandStreamsFactory;
+import inf122.horses.console.state.EmptyRacetrackStateFactory;
+
 
 public class Main
 {
 	public static void main(String[] args)
 	{
-		RacetrackConsoleFactory.create().run();
+		new RacetrackConsole(
+			new EmptyRacetrackStateFactory(),
+			new ConsoleCommandStreamsFactory())
+			.run();
 	}
 }

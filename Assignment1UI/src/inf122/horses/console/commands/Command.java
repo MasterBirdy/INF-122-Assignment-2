@@ -9,8 +9,8 @@
 
 package inf122.horses.console.commands;
 
-import inf122.horses.console.RacetrackState;
 import inf122.horses.console.results.CommandResult;
+import inf122.horses.console.state.RacetrackState;
 
 
 public interface Command

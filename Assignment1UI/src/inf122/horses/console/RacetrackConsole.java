@@ -15,15 +15,17 @@ import inf122.horses.console.io.CommandStreamsFactory;
 import inf122.horses.console.parsers.CommandParser;
 import inf122.horses.console.parsers.InvalidCommandException;
 import inf122.horses.console.results.CommandResult;
+import inf122.horses.console.state.RacetrackState;
+import inf122.horses.console.state.RacetrackStateFactory;
 
 
 public class RacetrackConsole
 {
 	public RacetrackConsole(
-		RacetrackState state,
+		RacetrackStateFactory stateFactory,
 		CommandStreamsFactory commandStreamsFactory)
 	{
-		this.state = state;
+		this.state = stateFactory.create();
 		this.commandInputStream = commandStreamsFactory.createCommandInputStream();
 		this.commandOutputStream = commandStreamsFactory.createCommandOutputStream();
 	}

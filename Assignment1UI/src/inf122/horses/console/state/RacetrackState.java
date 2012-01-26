@@ -6,7 +6,7 @@
 // A RacetrackState represents an object that holds all of the state necessary
 // to run the console-mode user interface.
 
-package inf122.horses.console;
+package inf122.horses.console.state;
 
 
 public interface RacetrackState

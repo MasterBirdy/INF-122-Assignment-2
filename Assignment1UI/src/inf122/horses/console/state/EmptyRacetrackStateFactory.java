@@ -1,16 +1,16 @@
-// RacetrackStateFactory.java
+// EmptyRacetrackStateFactory.java
 //
 // Informatics 122 Winter 2012
 // Assignment #1: Who's Gonna Ride Your Wild Horses?
 //
-// Creates a new RacetrackState and returns it.
+// Creates a new, empty RacetrackState and returns it.
 
-package inf122.horses.console;
+package inf122.horses.console.state;
 
 
-public class RacetrackStateFactory
+public class EmptyRacetrackStateFactory implements RacetrackStateFactory
 {
-	public static RacetrackState createEmpty()
+	public RacetrackState create()
 	{
 		// Inf122TBD: You will need to implement this method to create a single
 		// object that holds all of the state of the racetrack.
