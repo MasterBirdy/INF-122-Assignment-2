@@ -10,7 +10,6 @@ package inf122.horses.console.parsers;
 import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.ExBoxCommand;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 
@@ -49,7 +48,7 @@ class ExBoxCommandParser extends ExCommandParser
 	protected String[] getFormatMessages()
 	{
 		return new String[] {
-			"EXBOX <race#> <amountPerHorse> <horse#> [<horse#> ...]",
+			"EXBOX <race#> <amountPerHorse> <horse#> <horse#> [<horse#> ...]",
 			"    race#          - Race # on which to place a bet",
 			"    amountPerHorse - Amount, a whole number at least 1, to bet",
 			"    horse#         - The horse numbers to include in the box"
