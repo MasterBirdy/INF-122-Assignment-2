@@ -10,18 +10,16 @@ package inf122.horses.console.commands;
 import inf122.horses.console.results.CommandResult;
 import inf122.horses.console.results.UnimplementedCommandResult;
 import inf122.horses.console.state.RacetrackState;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 
 public class ExBoxCommand implements Command
 {
-	public ExBoxCommand(int raceNumber, int amount, Collection<String> horseNumbers)
+	public ExBoxCommand(int raceNumber, int amount, Set<String> horseNumbers)
 	{
 		this.raceNumber = raceNumber;
 		this.amount = amount;
-		this.horseNumbers = new HashSet<String>(horseNumbers);
+		this.horseNumbers = horseNumbers;
 	}
 	
 	

@@ -10,6 +10,7 @@ package inf122.horses.console.parsers;
 import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.ExBoxCommand;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -41,7 +42,9 @@ class ExBoxCommandParser extends ExCommandParser
 			return parseFailure();
 		}
 
-		return new ExBoxCommand(raceNumber, amount, horseNumbers);
+		return new ExBoxCommand(
+			raceNumber, amount,
+			new HashSet<String>(horseNumbers));
 	}
 
 

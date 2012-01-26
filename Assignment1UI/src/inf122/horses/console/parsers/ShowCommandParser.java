@@ -9,7 +9,7 @@ package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.ShowCommand;
-import java.util.List;
+import java.util.Set;
 
 
 class ShowCommandParser extends SingleHorseBetCommandParser
@@ -21,7 +21,7 @@ class ShowCommandParser extends SingleHorseBetCommandParser
 	
 	
 	protected Command createCommand(
-		int raceNumber, int amountPerHorse, List<String> horseNumbers)
+		int raceNumber, int amountPerHorse, Set<String> horseNumbers)
 	{
 		return new ShowCommand(raceNumber, amountPerHorse, horseNumbers);
 	}

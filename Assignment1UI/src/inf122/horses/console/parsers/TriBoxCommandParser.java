@@ -10,6 +10,7 @@ package inf122.horses.console.parsers;
 import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.TriBoxCommand;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 
@@ -42,7 +43,8 @@ class TriBoxCommandParser extends BaseKnownCommandParser
 		}
 
 		return new TriBoxCommand(
-			raceNumber, amount, horseNumbers);
+			raceNumber, amount,
+			new HashSet<String>(horseNumbers));
 	}
 
 

@@ -10,12 +10,12 @@ package inf122.horses.console.commands;
 import inf122.horses.console.results.CommandResult;
 import inf122.horses.console.results.UnimplementedCommandResult;
 import inf122.horses.console.state.RacetrackState;
-import java.util.List;
+import java.util.Set;
 
 
 public class WinCommand extends SingleHorseBetCommand
 {
-	public WinCommand(int horseNumber, int amountPerHorse, List<String> horseNumbers)
+	public WinCommand(int horseNumber, int amountPerHorse, Set<String> horseNumbers)
 	{
 		super(horseNumber, amountPerHorse, horseNumbers);
 	}

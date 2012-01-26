@@ -2,18 +2,16 @@
 
 package inf122.horses.console.commands;
 
-import java.util.HashSet;
 import java.util.Set;
-import java.util.List;
 
 
 public abstract class SingleHorseBetCommand implements Command
 {
-	public SingleHorseBetCommand(int horseNumber, int amountPerHorse, List<String> horseNumbers)
+	public SingleHorseBetCommand(int horseNumber, int amountPerHorse, Set<String> horseNumbers)
 	{
 		this.horseNumber = horseNumber;
 		this.amountPerHorse = amountPerHorse;
-		this.horseNumbers = new HashSet<String>(horseNumbers);
+		this.horseNumbers = horseNumbers;
 	}
 	
 	
