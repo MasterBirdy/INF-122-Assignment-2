@@ -22,8 +22,14 @@ class TakeCommandParser extends BaseKnownCommandParser
 		
 		try
 		{
-			return new TakeCommand(
-				Integer.parseInt(commandWords[1]));
+			int takePercentage = Integer.parseInt(commandWords[1]);
+			
+			if (takePercentage < 0 || takePercentage > 100)
+			{
+				return parseFailure();
+			}
+			
+			return new TakeCommand(takePercentage);
 		}
 		catch (NumberFormatException e)
 		{
