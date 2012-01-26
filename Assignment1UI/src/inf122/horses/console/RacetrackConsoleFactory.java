@@ -7,12 +7,17 @@
 
 package inf122.horses.console;
 
+import inf122.horses.console.io.ConsoleCommandStreamsFactory;
+
 
 public class RacetrackConsoleFactory
 {
 	public static RacetrackConsole create()
 	{
 		RacetrackState emptyRacetrackState = RacetrackStateFactory.createEmpty();
-		return new RacetrackConsole(emptyRacetrackState);
+		
+		return new RacetrackConsole(
+			emptyRacetrackState,
+			new ConsoleCommandStreamsFactory());
 	}
 }

@@ -7,64 +7,70 @@
 
 package inf122.horses.console;
 
+import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.StopCommand;
-import inf122.horses.console.commands.WelcomeCommand;
+import inf122.horses.console.io.CommandInputStream;
+import inf122.horses.console.io.CommandOutputStream;
+import inf122.horses.console.io.CommandStreamsFactory;
 import inf122.horses.console.parsers.CommandParser;
 import inf122.horses.console.parsers.InvalidCommandException;
 import inf122.horses.console.results.CommandResult;
-import java.util.Scanner;
 
 
 public class RacetrackConsole
 {
-	public RacetrackConsole(RacetrackState state)
+	public RacetrackConsole(
+		RacetrackState state,
+		CommandStreamsFactory commandStreamsFactory)
 	{
 		this.state = state;
+		this.commandInputStream = commandStreamsFactory.createCommandInputStream();
+		this.commandOutputStream = commandStreamsFactory.createCommandOutputStream();
 	}
 	
 	
 	public void run()
 	{
-		new WelcomeCommand().execute(state);
-		
-		consoleIn = new Scanner(System.in);
-		CommandParser commandParser = new CommandParser();
-		
 		while (true)
 		{
-			String commandString = consoleIn.nextLine();
-			
-			if (commandString == null)
+			try
 			{
-				new StopCommand().execute(state);
-				break;
+				String commandString = commandInputStream.nextCommandString();
+
+				CommandResult result = parseCommandString(commandString).execute(state);
+				
+				for (String outputLine : result.getConsoleOutput())
+				{
+					commandOutputStream.writeOutput(outputLine);
+				}
 			}
-			else
+			catch (InvalidCommandException e)
 			{
-				try
-				{
-					CommandResult result =
-						commandParser.parse(commandString).execute(state);
-					
-					for (String outputLine : result.getConsoleOutput())
-					{
-						System.out.println(outputLine);
-					}
-					
-					if (result.stopConsole())
-					{
-						break;
-					}
-				}
-				catch (InvalidCommandException e)
-				{
-					System.out.println(e.getMessage());
-				}
+				commandOutputStream.writeOutput(e.getMessage());
+			}
+			catch (Exception e)
+			{
+				commandOutputStream.writeOutput("EXCEPTION: " + e.getMessage());
+				e.printStackTrace();
 			}
 		}
 	}
 	
 	
+	private Command parseCommandString(String commandString)
+	{
+		if (commandString == null)
+		{
+			return new StopCommand(); 
+		}
+		else
+		{
+			return new CommandParser().parse(commandString);
+		}
+	}
+	
+	
 	private RacetrackState state;
-	private Scanner consoleIn;
+	private CommandInputStream commandInputStream;
+	private CommandOutputStream commandOutputStream;
 }
