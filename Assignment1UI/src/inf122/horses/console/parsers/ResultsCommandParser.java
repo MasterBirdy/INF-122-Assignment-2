@@ -8,12 +8,34 @@
 package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
+import inf122.horses.console.commands.ResultsCommand;
 
 
-class ResultsCommandParser implements KnownCommandParser
+class ResultsCommandParser extends BaseKnownCommandParser
 {
 	public Command parse(String[] commandWords)
 	{
-		return null;
+		if (commandWords.length != 5)
+		{
+			return parseFailure();
+		}
+		
+		int raceNumber = parseIntInRange(commandWords[1], 0, Integer.MAX_VALUE);
+		
+		return new ResultsCommand(
+			raceNumber, commandWords[2],
+			commandWords[3], commandWords[4]);
+	}
+	
+	
+	protected String[] getFormatMessages()
+	{
+		return new String[] {
+			"RESULTS <race#> <firstHorse> <secondHorse> <thirdHorse>",
+			"     race#       - Race number for which to record results",
+			"     firstHorse  - The number of the horse that finished first",
+			"     secondHorse - The number of the horse that finished second",
+			"     thirdHorse  - The number of the horse that finished third"
+		};
 	}
 }

@@ -14,9 +14,26 @@ import inf122.horses.console.state.RacetrackState;
 
 public class ResultsCommand implements Command
 {
+	public ResultsCommand(
+		int raceNumber, String firstHorse,
+		String secondHorse, String thirdHorse)
+	{
+		this.raceNumber = raceNumber;
+		this.firstHorse = firstHorse;
+		this.secondHorse = secondHorse;
+		this.thirdHorse = thirdHorse;
+	}
+	
+	
 	public CommandResult execute(RacetrackState state)
 	{
 		// Inf122TBD: Return an actual result
 		return new UnimplementedCommandResult();
 	}
+	
+	
+	private int raceNumber;
+	private String firstHorse;
+	private String secondHorse;
+	private String thirdHorse;
 }
