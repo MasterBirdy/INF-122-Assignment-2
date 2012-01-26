@@ -25,9 +25,10 @@ public class CommandParser
 {
 	public Command parse(String commandString)
 	{
-		String[] commandWords = commandString.toUpperCase().split("\\s+");
+		String[] commandWords = commandString.trim().toUpperCase().split("\\s+");
 		
-		if (commandWords.length == 0)
+		if (commandWords.length == 0 ||
+			(commandWords.length == 1 && commandWords[0].equals("")))
 		{
 			throw new InvalidCommandException("Empty command");
 		}
