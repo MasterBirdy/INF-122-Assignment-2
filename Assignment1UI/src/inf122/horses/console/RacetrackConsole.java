@@ -53,7 +53,10 @@ public class RacetrackConsole
 			}
 			catch (InvalidCommandException e)
 			{
-				commandOutputStream.writeOutput(e.getMessage());
+				for (String message : e.getMessages())
+				{
+					commandOutputStream.writeOutput(message);
+				}
 			}
 			catch (Exception e)
 			{

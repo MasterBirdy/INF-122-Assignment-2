@@ -8,12 +8,35 @@
 package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
+import inf122.horses.console.commands.TakeCommand;
 
 
-class TakeCommandParser implements KnownCommandParser
+class TakeCommandParser extends BaseKnownCommandParser
 {
 	public Command parse(String[] commandWords)
 	{
-		return null;
+		if (commandWords.length != 2)
+		{
+			return parseFailure();
+		}
+		
+		try
+		{
+			return new TakeCommand(
+				Integer.parseInt(commandWords[1]));
+		}
+		catch (NumberFormatException e)
+		{
+			return parseFailure();
+		}
+	}
+	
+	
+	protected String[] getFormatMessages()
+	{
+		return new String[] {
+			"TAKE <take_pct>",
+			"     take_pct - Track's take percentage, a whole number in the range 0..100"
+		};
 	}
 }
