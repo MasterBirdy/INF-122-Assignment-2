@@ -13,7 +13,20 @@ import inf122.horses.console.commands.Command;
 
 abstract class BaseKnownCommandParser implements KnownCommandParser
 {
-	public abstract Command parse(String[] commandWords);
+	public Command parse(String[] commandWords)
+	{
+		try
+		{
+			return parseWords(commandWords);
+		}
+		catch (Exception e)
+		{
+			return parseFailure();
+		}
+	}
+	
+	
+	protected abstract Command parseWords(String[] commandWords);
 	
 	
 	protected int parseIntInRange(String commandWord, int min, int max)

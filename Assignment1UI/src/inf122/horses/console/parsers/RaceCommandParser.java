@@ -15,14 +15,20 @@ import java.util.Set;
 
 class RaceCommandParser extends BaseKnownCommandParser
 {
-	public Command parse(String[] commandWords)
+	public RaceCommandParser()
+	{
+		raceNumberWordParser = new RaceNumberWordParser();
+	}
+	
+	
+	protected Command parseWords(String[] commandWords)
 	{
 		if (commandWords.length < 3)
 		{
 			return parseFailure();
 		}
 		
-		int raceNumber = parseIntInRange(commandWords[1], 0, Integer.MAX_VALUE);
+		int raceNumber = raceNumberWordParser.parse(commandWords[1]);
 
 		Set<String> horseNumbers = new HashSet<String>();
 		
@@ -46,8 +52,11 @@ class RaceCommandParser extends BaseKnownCommandParser
 	{
 		return new String[] {
 			"RACE <race#> <horse#> [<horse#> ...]",
-			"     race#  - race number to create, which must be a whole number 0..",
+			"     race#  - race number to create, which must be a whole number",
 			"     horse# - horse number of each horse in the race"
 		};
 	}
+	
+	
+	private RaceNumberWordParser raceNumberWordParser;
 }

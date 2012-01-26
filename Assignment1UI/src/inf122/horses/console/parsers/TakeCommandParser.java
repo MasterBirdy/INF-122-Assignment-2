@@ -13,7 +13,13 @@ import inf122.horses.console.commands.TakeCommand;
 
 class TakeCommandParser extends BaseKnownCommandParser
 {
-	public Command parse(String[] commandWords)
+	public TakeCommandParser()
+	{
+		takePercentageWordParser = new TakePercentageWordParser();
+	}
+	
+	
+	protected Command parseWords(String[] commandWords)
 	{
 		if (commandWords.length != 2)
 		{
@@ -23,7 +29,7 @@ class TakeCommandParser extends BaseKnownCommandParser
 		try
 		{
 			return new TakeCommand(
-				parseIntInRange(commandWords[1], 0, 100));
+				takePercentageWordParser.parse(commandWords[1]));
 		}
 		catch (NumberFormatException e)
 		{
@@ -36,7 +42,11 @@ class TakeCommandParser extends BaseKnownCommandParser
 	{
 		return new String[] {
 			"TAKE <take_pct>",
-			"     take_pct - Track's take percentage, a whole number in the range 0..100"
+			"     take_pct - Track's take percentage, a whole number in the range "
+				+ takePercentageWordParser.getMin() + ".." + takePercentageWordParser.getMax()
 		};
 	}
+	
+	
+	private TakePercentageWordParser takePercentageWordParser;
 }

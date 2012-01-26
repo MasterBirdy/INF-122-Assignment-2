@@ -13,14 +13,20 @@ import inf122.horses.console.commands.ResultsCommand;
 
 class ResultsCommandParser extends BaseKnownCommandParser
 {
-	public Command parse(String[] commandWords)
+	public ResultsCommandParser()
+	{
+		raceNumberWordParser = new RaceNumberWordParser();
+	}
+	
+	
+	protected Command parseWords(String[] commandWords)
 	{
 		if (commandWords.length != 5)
 		{
 			return parseFailure();
 		}
 		
-		int raceNumber = parseIntInRange(commandWords[1], 0, Integer.MAX_VALUE);
+		int raceNumber = raceNumberWordParser.parse(commandWords[1]);
 		
 		return new ResultsCommand(
 			raceNumber, commandWords[2],
@@ -38,4 +44,7 @@ class ResultsCommandParser extends BaseKnownCommandParser
 			"     thirdHorse  - The number of the horse that finished third"
 		};
 	}
+	
+	
+	private RaceNumberWordParser raceNumberWordParser;
 }
