@@ -14,9 +14,18 @@ import inf122.horses.console.state.RacetrackState;
 
 public class CancelCommand implements Command
 {
+	public CancelCommand(int ticketId)
+	{
+		this.ticketId = ticketId;
+	}
+	
+	
 	public CommandResult execute(RacetrackState state)
 	{
 		// Inf122TBD: Return an actual result
 		return new UnimplementedCommandResult();
 	}
+	
+	
+	private int ticketId;
 }

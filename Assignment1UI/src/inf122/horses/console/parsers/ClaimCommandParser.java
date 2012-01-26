@@ -7,13 +7,39 @@
 
 package inf122.horses.console.parsers;
 
+import inf122.horses.console.commands.ClaimCommand;
 import inf122.horses.console.commands.Command;
 
 
-class ClaimCommandParser implements KnownCommandParser
+class ClaimCommandParser extends BaseKnownCommandParser
 {
-	public Command parse(String[] commandWords)
+	public ClaimCommandParser()
 	{
-		return null;
+		ticketIdWordParser = new TicketIdWordParser();
 	}
+	
+	
+	protected Command parseWords(String[] commandWords)
+	{
+		if (commandWords.length != 2)
+		{
+			return parseFailure();
+		}
+		
+		int ticketId = ticketIdWordParser.parse(commandWords[1]);
+		
+		return new ClaimCommand(ticketId);
+	}
+
+
+	protected String[] getFormatMessages()
+	{
+		return new String[] {
+			"CLAIM <ticketID>",
+			"    ticketID - ticket ID of ticket to claim"
+		};
+	}
+	
+	
+	private TicketIdWordParser ticketIdWordParser;
 }

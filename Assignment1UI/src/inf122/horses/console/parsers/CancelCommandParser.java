@@ -7,13 +7,39 @@
 
 package inf122.horses.console.parsers;
 
+import inf122.horses.console.commands.CancelCommand;
 import inf122.horses.console.commands.Command;
 
 
-class CancelCommandParser implements KnownCommandParser
+class CancelCommandParser extends BaseKnownCommandParser
 {
-	public Command parse(String[] commandWords)
+	public CancelCommandParser()
 	{
-		return null;
+		ticketIdWordParser = new TicketIdWordParser();
 	}
+	
+	
+	protected Command parseWords(String[] commandWords)
+	{
+		if (commandWords.length != 2)
+		{
+			return parseFailure();
+		}
+		
+		int ticketId = ticketIdWordParser.parse(commandWords[1]);
+		
+		return new CancelCommand(ticketId);
+	}
+
+
+	protected String[] getFormatMessages()
+	{
+		return new String[] {
+			"CANCEL <ticketID>",
+			"    ticketID - ticket ID of ticket to cancel"
+		};
+	}
+	
+	
+	private TicketIdWordParser ticketIdWordParser;
 }
