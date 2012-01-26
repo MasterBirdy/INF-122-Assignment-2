@@ -8,12 +8,13 @@
 package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
+import inf122.horses.console.commands.StopCommand;
 
 
 class StopCommandParser implements KnownCommandParser
 {
 	public Command parse(String[] commandWords)
 	{
-		return null;
+		return new StopCommand();
 	}
 }

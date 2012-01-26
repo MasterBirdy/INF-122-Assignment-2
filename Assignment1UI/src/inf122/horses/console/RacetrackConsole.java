@@ -45,6 +45,11 @@ public class RacetrackConsole
 				{
 					commandOutputStream.writeOutput(outputLine);
 				}
+				
+				if (result.stopConsole())
+				{
+					break;
+				}
 			}
 			catch (InvalidCommandException e)
 			{
