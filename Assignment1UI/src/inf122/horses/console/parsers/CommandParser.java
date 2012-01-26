@@ -62,6 +62,7 @@ public class CommandParser
 		parsers.put("POOL", new PoolCommandParser());
 		parsers.put("PAY", new PayCommandParser());
 		parsers.put("STOP", new StopCommandParser());
+		parsers.put("WELCOME", new WelcomeCommandParser());
 		
 		knownCommandParsers = Collections.unmodifiableMap(parsers);
 	}
