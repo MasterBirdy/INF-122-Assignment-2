@@ -9,6 +9,8 @@ package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.ResultsCommand;
+import java.util.Arrays;
+import java.util.List;
 
 
 class ResultsCommandParser extends BaseKnownCommandParser
@@ -16,6 +18,7 @@ class ResultsCommandParser extends BaseKnownCommandParser
 	public ResultsCommandParser()
 	{
 		raceNumberWordParser = new RaceNumberWordParser();
+		horseNumbersParser = new HorseNumbersParser();
 	}
 	
 	
@@ -28,9 +31,12 @@ class ResultsCommandParser extends BaseKnownCommandParser
 		
 		int raceNumber = raceNumberWordParser.parse(commandWords[1]);
 		
+		List<String> horseNumbers = horseNumbersParser.parse(
+			Arrays.copyOfRange(commandWords, 2, commandWords.length));
+		
 		return new ResultsCommand(
-			raceNumber, commandWords[2],
-			commandWords[3], commandWords[4]);
+			raceNumber, horseNumbers.get(0),
+			horseNumbers.get(1), horseNumbers.get(2));
 	}
 	
 	
@@ -47,4 +53,5 @@ class ResultsCommandParser extends BaseKnownCommandParser
 	
 	
 	private RaceNumberWordParser raceNumberWordParser;
+	private HorseNumbersParser horseNumbersParser;
 }

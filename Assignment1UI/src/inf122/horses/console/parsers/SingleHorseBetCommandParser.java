@@ -9,7 +9,7 @@ package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
 import java.util.Arrays;
-import java.util.Set;
+import java.util.List;
 
 
 abstract class SingleHorseBetCommandParser extends BaseKnownCommandParser
@@ -32,7 +32,7 @@ abstract class SingleHorseBetCommandParser extends BaseKnownCommandParser
 		int raceNumber = raceNumberWordParser.parse(commandWords[1]);
 		int amountPerHorse = amountWordParser.parse(commandWords[2]);
 
-		Set<String> horseNumbers = horseNumbersParser.parse(
+		List<String> horseNumbers = horseNumbersParser.parse(
 			Arrays.copyOfRange(commandWords, 3, commandWords.length));
 		
 		return createCommand(raceNumber, amountPerHorse, horseNumbers);
@@ -53,7 +53,7 @@ abstract class SingleHorseBetCommandParser extends BaseKnownCommandParser
 	protected abstract String getBetType();
 	
 	protected abstract Command createCommand(
-		int raceNumber, int amountPerHorse, Set<String> horseNumbers);
+		int raceNumber, int amountPerHorse, List<String> horseNumbers);
 	
 	
 	private RaceNumberWordParser raceNumberWordParser;

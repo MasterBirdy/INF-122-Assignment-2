@@ -10,12 +10,12 @@ package inf122.horses.console.commands;
 import inf122.horses.console.results.CommandResult;
 import inf122.horses.console.results.UnimplementedCommandResult;
 import inf122.horses.console.state.RacetrackState;
-import java.util.Set;
+import java.util.List;
 
 
 public class PlaceCommand extends SingleHorseBetCommand
 {
-	public PlaceCommand(int horseNumber, int amountPerHorse, Set<String> horseNumbers)
+	public PlaceCommand(int horseNumber, int amountPerHorse, List<String> horseNumbers)
 	{
 		super(horseNumber, amountPerHorse, horseNumbers);
 	}

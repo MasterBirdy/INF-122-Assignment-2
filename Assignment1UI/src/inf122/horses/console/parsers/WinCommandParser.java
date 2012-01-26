@@ -9,7 +9,7 @@ package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.WinCommand;
-import java.util.Set;
+import java.util.List;
 
 
 class WinCommandParser extends SingleHorseBetCommandParser
@@ -21,7 +21,7 @@ class WinCommandParser extends SingleHorseBetCommandParser
 	
 	
 	protected Command createCommand(
-		int raceNumber, int amountPerHorse, Set<String> horseNumbers)
+		int raceNumber, int amountPerHorse, List<String> horseNumbers)
 	{
 		return new WinCommand(raceNumber, amountPerHorse, horseNumbers);
 	}

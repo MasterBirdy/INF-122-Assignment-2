@@ -8,15 +8,15 @@
 
 package inf122.horses.console.parsers;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HorseNumbersParser
 {
-	public Set<String> parse(String[] horseNumberWords)
+	public List<String> parse(String[] horseNumberWords)
 	{
-		Set<String> horseNumbers = new HashSet<String>();
+		List<String> horseNumbers = new ArrayList<String>();
 		
 		for (String horseNumber : horseNumberWords)
 		{

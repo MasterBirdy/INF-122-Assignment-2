@@ -10,7 +10,7 @@ package inf122.horses.console.parsers;
 import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.RaceCommand;
 import java.util.Arrays;
-import java.util.Set;
+import java.util.List;
 
 
 class RaceCommandParser extends BaseKnownCommandParser
@@ -31,7 +31,7 @@ class RaceCommandParser extends BaseKnownCommandParser
 		
 		int raceNumber = raceNumberWordParser.parse(commandWords[1]);
 		
-		Set<String> horseNumbers = horseNumbersParser.parse(
+		List<String> horseNumbers = horseNumbersParser.parse(
 			Arrays.copyOfRange(commandWords, 2, commandWords.length));
 		
 		return new RaceCommand(raceNumber, horseNumbers);

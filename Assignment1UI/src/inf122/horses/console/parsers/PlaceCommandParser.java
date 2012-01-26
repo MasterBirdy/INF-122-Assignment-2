@@ -9,7 +9,7 @@ package inf122.horses.console.parsers;
 
 import inf122.horses.console.commands.Command;
 import inf122.horses.console.commands.PlaceCommand;
-import java.util.Set;
+import java.util.List;
 
 
 class PlaceCommandParser extends SingleHorseBetCommandParser
@@ -21,7 +21,7 @@ class PlaceCommandParser extends SingleHorseBetCommandParser
 	
 	
 	protected Command createCommand(
-		int raceNumber, int amountPerHorse, Set<String> horseNumbers)
+		int raceNumber, int amountPerHorse, List<String> horseNumbers)
 	{
 		return new PlaceCommand(raceNumber, amountPerHorse, horseNumbers);
 	}
