@@ -50,6 +50,7 @@ public class CommandParser
 		
 		parsers.put("TAKE", new TakeCommandParser());
 		parsers.put("RACE", new RaceCommandParser());
+		parsers.put("POST", new PostCommandParser());
 		parsers.put("RESULTS", new ResultsCommandParser());
 		parsers.put("WIN", new WinCommandParser());
 		parsers.put("PLACE", new PlaceCommandParser());
