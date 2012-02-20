@@ -21,4 +21,5 @@ public class Main
 			new ConsoleCommandStreamsFactory())
 			.run();
 	}
+	
 }

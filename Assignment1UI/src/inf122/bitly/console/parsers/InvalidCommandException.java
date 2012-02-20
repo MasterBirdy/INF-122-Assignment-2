@@ -15,6 +15,12 @@ import java.util.List;
 
 public class InvalidCommandException extends RuntimeException
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	public InvalidCommandException(String... messages)
 	{
 		super("Invalid command: " + messages[0]);

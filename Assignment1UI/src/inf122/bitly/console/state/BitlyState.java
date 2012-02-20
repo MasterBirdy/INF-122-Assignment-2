@@ -1,8 +1,20 @@
 package inf122.bitly.console.state;
 
+import inf122.bitly.console.reader.TextReader;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 public abstract class BitlyState {
 	
-	public BitlyState login(String apiKey)
+	protected TextReader tr;
+	
+	public BitlyState()
+	{
+		tr = new TextReader();
+	}
+	
+	public BitlyState login(String loginName, String apiKey) throws MalformedURLException, IOException
 	{
 		throw new AlreadyLoggedInException();
 	}
@@ -36,4 +48,19 @@ public abstract class BitlyState {
 	{
 		throw new NotLoggedInException();
 	}
+	
+	public String getLoginName()
+	{
+		throw new NotLoggedInException();
+	}
+	
+	public String getAPIKey()
+	{
+		throw new NotLoggedInException();
+	}
+	
+	public static final String MASTER_USERNAME = "masterbirdy";
+	public static final String MASTER_API_KEY = "R_fa9db7ada9c06caf5ca2301ff479b3d0";
+	public static final String TEXT_FORMAT = "txt";
+	public static final String XML_FORMAT = "xml";
 }

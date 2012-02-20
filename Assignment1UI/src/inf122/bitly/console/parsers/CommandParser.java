@@ -26,7 +26,7 @@ public class CommandParser
 {
 	public Command parse(String commandString)
 	{
-		String[] commandWords = commandString.trim().toUpperCase().split("\\s+");
+		String[] commandWords = commandString.trim().split("\\s+");
 		
 		if (commandWords.length == 0 ||
 			(commandWords.length == 1 && commandWords[0].equals("")))
@@ -44,27 +44,16 @@ public class CommandParser
 		return parser.parse(commandWords);
 	}
 	
-	
 	static
 	{
 		Map<String, KnownCommandParser> parsers = new HashMap<String, KnownCommandParser>();
 		
-		parsers.put("TAKE", new TakeCommandParser());
-		parsers.put("RACE", new RaceCommandParser());
-		parsers.put("POST", new PostCommandParser());
-		parsers.put("RESULTS", new ResultsCommandParser());
-		parsers.put("WIN", new WinCommandParser());
-		parsers.put("PLACE", new PlaceCommandParser());
-		parsers.put("SHOW", new ShowCommandParser());
-		parsers.put("EX", new ExCommandParser());
-		parsers.put("EXBOX", new ExBoxCommandParser());
-		parsers.put("TRI", new TriCommandParser());
-		parsers.put("TRIBOX", new TriBoxCommandParser());
-		parsers.put("CLAIM", new ClaimCommandParser());
-		parsers.put("CANCEL", new CancelCommandParser());
-		parsers.put("POOL", new PoolCommandParser());
 		parsers.put("STOP", new StopCommandParser());
 		parsers.put("WELCOME", new WelcomeCommandParser());
+		parsers.put("LOGIN", new LoginCommandParser());
+		parsers.put("LOGOUT", new LogoutCommandParser());
+		parsers.put("SHORTEN", new ShortenCommandParser());
+		parsers.put("EXPAND", new ExpandCommandParser());
 		
 		knownCommandParsers = Collections.unmodifiableMap(parsers);
 	}
