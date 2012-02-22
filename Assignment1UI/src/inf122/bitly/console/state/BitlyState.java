@@ -34,7 +34,12 @@ public abstract class BitlyState {
 		throw new NotLoggedInException();
 	}
 	
-	public String watch(String shortenedUrl)
+	public boolean watch(String shortenedUrl)
+	{
+		throw new NotLoggedInException();
+	}
+	
+	public boolean unwatch(String shortURL) 
 	{
 		throw new NotLoggedInException();
 	}
@@ -63,4 +68,5 @@ public abstract class BitlyState {
 	public static final String MASTER_API_KEY = "R_fa9db7ada9c06caf5ca2301ff479b3d0";
 	public static final String TEXT_FORMAT = "txt";
 	public static final String XML_FORMAT = "xml";
+
 }

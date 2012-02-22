@@ -1,21 +1,21 @@
 package inf122.bitly.console.commands;
 
 import inf122.bitly.console.results.CommandResult;
-import inf122.bitly.console.results.ExpandCommandResult;
+import inf122.bitly.console.results.UnwatchCommandResult;
 import inf122.bitly.console.state.BitlyContext;
 
-public class ExpandCommand implements Command{
+public class UnwatchCommand implements Command {
 	
 	private String shortURL;
 
-	public ExpandCommand(String shortURL) {
+	public UnwatchCommand(String shortURL) {
 		this.shortURL = shortURL;
 	}
 
 	@Override
 	public CommandResult execute(BitlyContext state) {
-		String longURL = state.expand(shortURL);
-		return new ExpandCommandResult(longURL);
+		boolean success = state.unwatch(shortURL);
+		return new UnwatchCommandResult(success);
 	}
 
 }

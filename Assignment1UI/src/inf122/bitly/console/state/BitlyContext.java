@@ -44,6 +44,26 @@ public class BitlyContext
 	
 	public String expand(String shortURL) 
 	{
-		return state.shorten(shortURL);
+		return state.expand(shortURL);
+	}
+	
+	public boolean watch(String shortURL)
+	{
+		return state.watch(shortURL);
+	}
+	
+	public boolean unwatch(String shortURL)
+	{
+		return state.unwatch(shortURL);
+	}
+	
+	public void hour()
+	{
+		state.hour();
+	}
+	
+	public void week()
+	{
+		state.week();
 	}
 }
