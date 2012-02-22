@@ -1,6 +1,10 @@
 package inf122.bitly.console.state;
 
 import static org.junit.Assert.*;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -55,4 +59,34 @@ public class LoggedOutTest {
 	{
 		state.week();
 	}
+	
+	@Test
+	public void TestingLoginTrue()
+	{
+		try {
+			assertTrue(state.login("", "", true));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			fail("MalformedURLException");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			fail("IOException");
+		}
+	}
+	
+	@Test
+	public void TestingLoginFalse()
+	{
+		try {
+			assertEquals(false, state.login("", "", false));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			fail("MalformedURLException");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			fail("IOException");
+		}
+	}
 }
+
+

@@ -20,21 +20,20 @@ public class BitlyContext
 		state = new LoggedOutBitlyState();
 	}
 	
-	public boolean login(String loginName, String apiKey) throws MalformedURLException, IOException 
+	public boolean login(String loginName, String apiKey, boolean success) throws MalformedURLException, IOException 
 	{
-		BitlyState tempState = state.login(loginName, apiKey);
-		if (tempState.getLoginName().equals("") || tempState.getAPIKey().equals(""))
-			return false;
-		else
+		if (success) 
 		{
-			state = tempState;
+			state = state.login(loginName, apiKey);
 			return true;
 		}
+		else
+			return false;
 	}
 
 	public void logout()
 	{
-		state.logout();
+		state = state.logout();
 	}
 
 	public String shorten(String longURL) 

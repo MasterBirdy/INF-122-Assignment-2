@@ -11,19 +11,19 @@ import inf122.bitly.console.state.BitlyState;
 
 public class TextReader {
 
-	public String login(String loginName, String apiKey){
+	public boolean login(String loginName, String apiKey){
 		try 
 		{
 			URL loginURL = new URL("http://api.bit.ly/v3/validate?x_login=" + BitlyState.MASTER_USERNAME 
 					+ "&x_apiKey=" + BitlyState.MASTER_API_KEY + "&login=" + loginName + "&apiKey=" + 
 					apiKey + "&format=" + BitlyState.TEXT_FORMAT);
-			return parse(loginURL);
+			return parse(loginURL).equals("1");
 		} 
 		catch (MalformedURLException e)
 		{
 			e.printStackTrace();
 		}
-		return "";
+		return false;
 	}
 	
 	public String shorten(String longURL, String loginName, String apiKey) {
