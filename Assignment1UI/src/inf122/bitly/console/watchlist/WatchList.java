@@ -5,24 +5,49 @@ import java.util.List;
 
 public class WatchList {
 	
-	private List<String> observers;
+	private List<ObserverInterface> observers;
 	
 	public WatchList()
 	{
-		observers = new ArrayList<String>();
+		observers = new ArrayList<ObserverInterface>();
 	}
 
-	public boolean watch(String shortURL) 
+	public boolean watch(ObserverInterface o) 
 	{
-		if (!observers.contains(shortURL))
-			return observers.add(shortURL);
+		boolean hasObserver = false;
+		for (ObserverInterface ob : observers)
+			if (o.giveShortURL().equals(ob.giveShortURL()))
+				hasObserver = true;
+		if (!hasObserver)
+			return observers.add(o);
 		else
 			return false;
 	}
 
-	public boolean unwatch(String shortURL) 
+	public boolean unwatch(ObserverInterface o) 
 	{
-		return observers.remove(shortURL);
+		for (ObserverInterface ob : observers)
+			if (o.giveShortURL().equals(ob.giveShortURL())) {
+				return observers.remove(ob);
+			}
+		return false;
+	}
+	
+	public int size()
+	{
+		return observers.size();
+	}
+	
+	public void hours()
+	{
+		for (ObserverInterface o : observers)
+			System.out.println(o.hour());
+	}
+	
+	public void weeks()
+	{
+		for (ObserverInterface o : observers)
+			System.out.println(o.week());
 	}
 
 }

@@ -1,34 +1,27 @@
 package inf122.bitly.console.state;
 
+import inf122.bitly.console.reader.TextReaderInterface;
 import inf122.bitly.console.reader.Validator;
+import inf122.bitly.console.watchlist.ObserverInterface;
 import inf122.bitly.console.watchlist.WatchList;
 
 public class LoggedInBitlyState extends BitlyState {
 	
-	private String loginName;
-	private String apiKey;
+	private static String loginName;
+	private static String apiKey;
 	private WatchList watchlist;
 	
-	public LoggedInBitlyState(String loginName, String apiKey)
+	public LoggedInBitlyState(String loginName, String apiKey, TextReaderInterface tr)
 	{
-		this.loginName = loginName;
-		this.apiKey = apiKey;
+		LoggedInBitlyState.loginName = loginName;
+		LoggedInBitlyState.apiKey = apiKey;
 		this.watchlist = new WatchList();
-	}
-	
-	public String getLoginName()
-	{
-		return loginName;
-	}
-	
-	public String getAPIKey()
-	{
-		return apiKey;
+		this.tr = tr;
 	}
 	
 	public BitlyState logout()
 	{
-		return new LoggedOutBitlyState();
+		return new LoggedOutBitlyState(tr);
 	}
 	
 	public String shorten (String longURL)
@@ -41,16 +34,46 @@ public class LoggedInBitlyState extends BitlyState {
 		return tr.expand(shortURL, loginName, apiKey);
 	}
 	
-	public boolean watch(String shortURL)
+	public boolean watch(ObserverInterface o)
 	{
-		if (Validator.validateShortURL(shortURL))
-			return watchlist.watch(shortURL);
+		if (Validator.validateShortURL(o.giveShortURL()))
+			return watchlist.watch(o);
 		else 
 			return false;
 	}
 	
-	public boolean unwatch(String shortURL)
+	public boolean unwatch(ObserverInterface o)
 	{
-		return watchlist.unwatch(shortURL);
+		return watchlist.unwatch(o);
+	}
+	
+	public boolean loggedIn()
+	{
+		return !(loginName.equals(""));
+	}
+	
+	public int sizeOfWatchlist()
+	{
+		return watchlist.size();
+	}
+	
+	public static String getLoginName()
+	{
+		return loginName;
+	}
+	
+	public static String getAPIKey()
+	{
+		return apiKey;
+	}
+	
+	public void hour()
+	{
+		watchlist.hours();
+	}
+	
+	public void week()
+	{
+		watchlist.weeks();
 	}
 }

@@ -7,6 +7,8 @@
 
 package inf122.bitly.console.state;
 
+import inf122.bitly.console.reader.TextReader;
+
 
 public class EmptyBitlyContextFactory implements BitlyContextFactory
 {
@@ -15,6 +17,6 @@ public class EmptyBitlyContextFactory implements BitlyContextFactory
 		// Inf122TBD: You will need to implement this method to create a single
 		// object that holds all of the state of the racetrack.
 		
-		return new BitlyContext();
+		return new BitlyContext(new TextReader());
 	}
 }

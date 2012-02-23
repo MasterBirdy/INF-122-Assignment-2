@@ -9,7 +9,7 @@ import java.net.URLConnection;
 
 import inf122.bitly.console.state.BitlyState;
 
-public class TextReader {
+public class TextReader implements TextReaderInterface{
 
 	public boolean login(String loginName, String apiKey){
 		try 

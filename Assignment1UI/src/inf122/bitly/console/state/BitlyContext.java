@@ -8,6 +8,9 @@
 
 package inf122.bitly.console.state;
 
+import inf122.bitly.console.reader.TextReaderInterface;
+import inf122.bitly.console.watchlist.ObserverInterface;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 
@@ -15,21 +18,23 @@ public class BitlyContext
 {
 	private BitlyState state;
 	
-	public BitlyContext()
+	public BitlyContext(TextReaderInterface tr)
 	{
-		state = new LoggedOutBitlyState();
+		state = new LoggedOutBitlyState(tr);
 	}
 	
-	public boolean login(String loginName, String apiKey, boolean success) throws MalformedURLException, IOException 
+	public boolean login(String loginName, String apiKey) throws MalformedURLException, IOException 
 	{
-		if (success) 
+		BitlyState tempState = state.login(loginName, apiKey);
+		if (tempState.loggedIn())
 		{
-			state = state.login(loginName, apiKey);
+			state = tempState;
 			return true;
 		}
 		else
 			return false;
 	}
+	
 
 	public void logout()
 	{
@@ -46,14 +51,14 @@ public class BitlyContext
 		return state.expand(shortURL);
 	}
 	
-	public boolean watch(String shortURL)
+	public boolean watch(ObserverInterface o)
 	{
-		return state.watch(shortURL);
+		return state.watch(o);
 	}
 	
-	public boolean unwatch(String shortURL)
+	public boolean unwatch(ObserverInterface o)
 	{
-		return state.unwatch(shortURL);
+		return state.unwatch(o);
 	}
 	
 	public void hour()
@@ -64,5 +69,10 @@ public class BitlyContext
 	public void week()
 	{
 		state.week();
+	}
+	
+	public int sizeOfWatchlist()
+	{
+		return state.sizeOfWatchlist();
 	}
 }

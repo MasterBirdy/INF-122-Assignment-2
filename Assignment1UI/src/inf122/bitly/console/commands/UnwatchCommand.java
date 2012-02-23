@@ -1,8 +1,10 @@
 package inf122.bitly.console.commands;
 
+import inf122.bitly.console.reader.XMLReader;
 import inf122.bitly.console.results.CommandResult;
 import inf122.bitly.console.results.UnwatchCommandResult;
 import inf122.bitly.console.state.BitlyContext;
+import inf122.bitly.console.watchlist.Observer;
 
 public class UnwatchCommand implements Command {
 	
@@ -14,7 +16,7 @@ public class UnwatchCommand implements Command {
 
 	@Override
 	public CommandResult execute(BitlyContext state) {
-		boolean success = state.unwatch(shortURL);
+		boolean success = state.unwatch(new Observer(shortURL, new XMLReader()));
 		return new UnwatchCommandResult(success);
 	}
 

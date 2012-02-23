@@ -1,18 +1,14 @@
 package inf122.bitly.console.state;
 
-import inf122.bitly.console.reader.TextReader;
+import inf122.bitly.console.reader.TextReaderInterface;
+import inf122.bitly.console.watchlist.ObserverInterface;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 public abstract class BitlyState {
 	
-	protected TextReader tr;
-	
-	public BitlyState()
-	{
-		tr = new TextReader();
-	}
+	protected TextReaderInterface tr;
 	
 	public BitlyState login(String loginName, String apiKey) throws MalformedURLException, IOException
 	{
@@ -34,32 +30,33 @@ public abstract class BitlyState {
 		throw new NotLoggedInException();
 	}
 	
-	public boolean watch(String shortenedUrl)
+	public boolean watch(ObserverInterface o)
 	{
 		throw new NotLoggedInException();
 	}
 	
-	public boolean unwatch(String shortURL) 
+	public boolean unwatch(ObserverInterface o) 
 	{
 		throw new NotLoggedInException();
 	}
 	
-	public String hour()
+	public void hour()
 	{
 		throw new NotLoggedInException();
 	}
 	
-	public String week()
+	public void week()
 	{
 		throw new NotLoggedInException();
 	}
 	
-	public String getLoginName()
+
+	public boolean loggedIn()
 	{
-		throw new NotLoggedInException();
+		return false;
 	}
 	
-	public String getAPIKey()
+	public int sizeOfWatchlist()
 	{
 		throw new NotLoggedInException();
 	}

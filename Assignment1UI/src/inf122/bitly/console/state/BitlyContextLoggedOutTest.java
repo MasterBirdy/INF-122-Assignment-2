@@ -2,91 +2,105 @@ package inf122.bitly.console.state;
 
 import static org.junit.Assert.*;
 
+import inf122.bitly.console.reader.MockTextReaderFalse;
+import inf122.bitly.console.reader.MockTextReaderTrue;
+import inf122.bitly.console.reader.MockXMLReader;
+import inf122.bitly.console.watchlist.Observer;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class LoggedOutTest {
+public class BitlyContextLoggedOutTest {
 	
-	public BitlyContext state;
+	public BitlyContext context;
+	public BitlyContext context2;
 
 	@Before
 	public void createScoreboard()
 	{
-		state = new BitlyContext();
+		context = new BitlyContext(new MockTextReaderTrue());
+		context2 = new BitlyContext(new MockTextReaderFalse());
 	}
 	
 	@Test(expected = AlreadyLoggedOutException.class)
 	public void alreadyLoggedOut()
 	{
-		state.logout();
+		context.logout();
 	}
 	
 	@Test(expected = NotLoggedInException.class)
 	public void mustBeLoggedInToShorten()
 	{
-		state.shorten("http://www.google.com");
+		context.shorten("http://www.google.com");
 	}
 	
 	@Test(expected = NotLoggedInException.class)
 	public void mustBeLoggedInToExpand()
 	{
-		state.expand("http://bit.ly/wLewii");
+		context.expand("http://bit.ly/wLewii");
 	}
 	
 	@Test(expected = NotLoggedInException.class)
 	public void mustBeLoggedInToWatch()
 	{
-		state.watch("http://bit.ly/wLewii");
+		context.watch(new Observer("http://bit.ly/wLewii", new MockXMLReader()));
 	}
 	
 	@Test(expected = NotLoggedInException.class)
 	public void mustBeLoggedInToUnwatch()
 	{
-		state.unwatch("http://bit.ly/wLewii");
+		context.unwatch(new Observer("http://bit.ly/wLewii", new MockXMLReader()));
 	}
 	
 	@Test(expected = NotLoggedInException.class)
 	public void mustBeLoggedInToHour()
 	{
-		state.hour();
+		context.hour();
 	}
 	
 	@Test(expected = NotLoggedInException.class)
 	public void mustBeLoggedInToWeek()
 	{
-		state.week();
+		context.week();
 	}
 	
 	@Test
-	public void TestingLoginTrue()
+	public void loginTrue()
 	{
 		try {
-			assertTrue(state.login("", "", true));
+			assertTrue(context.login("test","123"));
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
-			fail("MalformedURLException");
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			fail("IOException");
+			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	public void TestingLoginFalse()
+	public void loginFalse()
 	{
 		try {
-			assertEquals(false, state.login("", "", false));
+			assertEquals(false, context2.login("test","123"));
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
-			fail("MalformedURLException");
+			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			fail("IOException");
+			e.printStackTrace();
 		}
 	}
+	
+	@Test(expected = NotLoggedInException.class)
+	public void cantGetWatchlistSize()
+	{
+		context.sizeOfWatchlist();
+	}
+	
 }
 
 
