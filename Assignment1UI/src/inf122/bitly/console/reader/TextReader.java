@@ -8,6 +8,7 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import inf122.bitly.console.state.BitlyState;
+import inf122.bitly.console.state.LoggedInBitlyState;
 
 public class TextReader implements TextReaderInterface{
 
@@ -26,11 +27,11 @@ public class TextReader implements TextReaderInterface{
 		return false;
 	}
 	
-	public String shorten(String longURL, String loginName, String apiKey) {
+	public String shorten(String longURL) {
 		try 
 		{
-			URL shortenURL = new URL("http://api.bit.ly/v3/shorten?login=" + loginName + "&apiKey=" + 
-					apiKey + "&longUrl=" + longURL + "&format=" + BitlyState.TEXT_FORMAT);
+			URL shortenURL = new URL("http://api.bit.ly/v3/shorten?login=" + LoggedInBitlyState.getLoginName() + "&apiKey=" + 
+					LoggedInBitlyState.getAPIKey() + "&longUrl=" + longURL + "&format=" + BitlyState.TEXT_FORMAT);
 			return parse(shortenURL);
 		} 
 		catch (MalformedURLException e)
@@ -40,11 +41,11 @@ public class TextReader implements TextReaderInterface{
 		return "";
 	}
 	
-	public String expand(String shortURL, String loginName, String apiKey) {
+	public String expand(String shortURL) {
 		try 
 		{
-			URL shortenURL = new URL("http://api.bit.ly/v3/expand?login=" + loginName + "&apiKey=" + 
-					apiKey + "&shortUrl=" + shortURL + "&format=" + BitlyState.TEXT_FORMAT);
+			URL shortenURL = new URL("http://api.bit.ly/v3/expand?login=" + LoggedInBitlyState.getLoginName() + "&apiKey=" + 
+					LoggedInBitlyState.getAPIKey()+ "&shortUrl=" + shortURL + "&format=" + BitlyState.TEXT_FORMAT);
 			return parse(shortenURL);
 		} 
 		catch (MalformedURLException e)

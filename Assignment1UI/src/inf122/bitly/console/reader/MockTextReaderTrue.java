@@ -8,13 +8,13 @@ public class MockTextReaderTrue implements TextReaderInterface {
 	}
 
 	@Override
-	public String shorten(String longURL, String loginName, String apiKey) {
+	public String shorten(String longURL) {
 		// TODO Auto-generated method stub
 		return "http://bit.ly/wLewii";
 	}
 
 	@Override
-	public String expand(String shortURL, String loginName, String apiKey) {
+	public String expand(String shortURL) {
 		// TODO Auto-generated method stub
 		return "http://tf2pug.heroku.com/topics/3073";
 	}

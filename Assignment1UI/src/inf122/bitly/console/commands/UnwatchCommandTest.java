@@ -6,20 +6,24 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import inf122.bitly.console.reader.MockTextReaderTrue;
+import inf122.bitly.console.reader.MockXMLReader;
 import inf122.bitly.console.state.BitlyContext;
+import inf122.bitly.console.watchlist.Observer;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class ShortenCommandTest {
-
+public class UnwatchCommandTest {
+	
 	private BitlyContext bc;
-	private ShortenCommand sc;
+	private UnwatchCommand uc;
+	private UnwatchCommand uc2;
 	
 	@Before
-	public void createContext(){
+	public void setUpContext() {
 		bc = new BitlyContext(new MockTextReaderTrue());
-		sc = new ShortenCommand("http://tf2pug.heroku.com/topics/3073");
+		uc = new UnwatchCommand("http://bit.ly/wLewii");
+		uc2 = new UnwatchCommand("http://bit.ly/wfciv");
 		try {
 			bc.login("abc", "123");
 		} catch (MalformedURLException e) {
@@ -29,11 +33,17 @@ public class ShortenCommandTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		bc.watch(new Observer("http://bit.ly/wLewii", new MockXMLReader()));
+	}
+
+	@Test
+	public void testExecute() {
+		assertEquals("URL has been successfully removed", uc.execute(bc).getConsoleOutput().get(0));
 	}
 	
 	@Test
-	public void testExecute() {
-		assertEquals("URL has been shortened to http://bit.ly/wLewii", sc.execute(bc).getConsoleOutput().get(0));
+	public void testExecute2() {
+		assertEquals("URL was not removed", uc2.execute(bc).getConsoleOutput().get(0));
 	}
 
 }

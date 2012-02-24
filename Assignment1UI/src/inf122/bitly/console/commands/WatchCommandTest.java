@@ -6,22 +6,28 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import inf122.bitly.console.reader.MockTextReaderTrue;
+import inf122.bitly.console.reader.MockXMLReader;
 import inf122.bitly.console.state.BitlyContext;
+import inf122.bitly.console.watchlist.Observer;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class ShortenCommandTest {
-
+public class WatchCommandTest {
+	
 	private BitlyContext bc;
-	private ShortenCommand sc;
+	private BitlyContext bc2;
+	private WatchCommand wc;
 	
 	@Before
-	public void createContext(){
+	public void setUpContext() {
 		bc = new BitlyContext(new MockTextReaderTrue());
-		sc = new ShortenCommand("http://tf2pug.heroku.com/topics/3073");
+		bc2 = new BitlyContext(new MockTextReaderTrue());
+		wc = new WatchCommand("http://bit.ly/wLewii");
 		try {
 			bc.login("abc", "123");
+			bc2.login("abc", "123");
+			bc2.watch(new Observer("http://bit.ly/wLewii", new MockXMLReader()));
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -30,10 +36,13 @@ public class ShortenCommandTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void testExecute() {
-		assertEquals("URL has been shortened to http://bit.ly/wLewii", sc.execute(bc).getConsoleOutput().get(0));
+		assertEquals("URL has been successfully added", wc.execute(bc).getConsoleOutput().get(0));
 	}
 
+	public void testExecute2() {
+		assertEquals("URL was not added", wc.execute(bc2).getConsoleOutput().get(0));
+	}
 }

@@ -1,27 +1,29 @@
 package inf122.bitly.console.commands;
 
 import static org.junit.Assert.*;
+import inf122.bitly.console.reader.MockTextReaderTrue;
+import inf122.bitly.console.reader.MockXMLReader;
+import inf122.bitly.console.state.BitlyContext;
+import inf122.bitly.console.watchlist.Observer;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import inf122.bitly.console.reader.MockTextReaderTrue;
-import inf122.bitly.console.state.BitlyContext;
-
 import org.junit.Before;
 import org.junit.Test;
 
-public class ShortenCommandTest {
+public class WeekCommandTest {
 
 	private BitlyContext bc;
-	private ShortenCommand sc;
+	private WeekCommand wc;
 	
 	@Before
 	public void createContext(){
 		bc = new BitlyContext(new MockTextReaderTrue());
-		sc = new ShortenCommand("http://tf2pug.heroku.com/topics/3073");
 		try {
 			bc.login("abc", "123");
+			wc = new WeekCommand();
+			bc.watch(new Observer("http://bit.ly/wLewii", new MockXMLReader()));
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -33,7 +35,7 @@ public class ShortenCommandTest {
 	
 	@Test
 	public void testExecute() {
-		assertEquals("URL has been shortened to http://bit.ly/wLewii", sc.execute(bc).getConsoleOutput().get(0));
+		assertEquals("End of Week List", wc.execute(bc).getConsoleOutput().get(0));
 	}
 
 }

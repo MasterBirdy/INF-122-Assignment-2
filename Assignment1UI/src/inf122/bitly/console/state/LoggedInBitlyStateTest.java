@@ -8,6 +8,7 @@ import org.junit.Test;
 
 public class LoggedInBitlyStateTest {
 	
+	@SuppressWarnings("unused")
 	private LoggedInBitlyState bitlyState;
 	
 	@Before

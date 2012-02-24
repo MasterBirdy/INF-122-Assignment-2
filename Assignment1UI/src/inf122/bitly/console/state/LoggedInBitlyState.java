@@ -26,12 +26,12 @@ public class LoggedInBitlyState extends BitlyState {
 	
 	public String shorten (String longURL)
 	{
-		return tr.shorten(longURL, loginName, apiKey);
+		return tr.shorten(longURL);
 	}
 	
 	public String expand (String shortURL)
 	{
-		return tr.expand(shortURL, loginName, apiKey);
+		return tr.expand(shortURL);
 	}
 	
 	public boolean watch(ObserverInterface o)

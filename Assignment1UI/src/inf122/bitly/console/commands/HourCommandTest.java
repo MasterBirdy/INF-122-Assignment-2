@@ -6,7 +6,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 import inf122.bitly.console.reader.MockTextReaderTrue;
+import inf122.bitly.console.reader.MockXMLReader;
 import inf122.bitly.console.state.BitlyContext;
+import inf122.bitly.console.watchlist.Observer;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +24,7 @@ public class HourCommandTest {
 		try {
 			bc.login("abc", "123");
 			hc = new HourCommand();
+			bc.watch(new Observer("http://bit.ly/wLewii", new MockXMLReader()));
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
