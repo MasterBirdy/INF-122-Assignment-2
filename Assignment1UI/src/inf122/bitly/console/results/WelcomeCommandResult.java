@@ -15,7 +15,7 @@ public class WelcomeCommandResult implements CommandResult
 {
 	public List<String> getConsoleOutput()
 	{
-		return Arrays.asList("Informatics 122 Winter 2012 - Assignment #1 - READY");
+		return Arrays.asList("Informatics 122 Winter 2012 - Assignment #2 - READY");
 	}
 	
 	

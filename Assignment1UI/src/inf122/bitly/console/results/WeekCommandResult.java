@@ -1,5 +1,6 @@
 package inf122.bitly.console.results;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class WeekCommandResult implements CommandResult {
@@ -7,7 +8,7 @@ public class WeekCommandResult implements CommandResult {
 	@Override
 	public List<String> getConsoleOutput() {
 		// TODO Auto-generated method stub
-		return null;
+		return Arrays.asList("End of Week List");
 	}
 
 	@Override

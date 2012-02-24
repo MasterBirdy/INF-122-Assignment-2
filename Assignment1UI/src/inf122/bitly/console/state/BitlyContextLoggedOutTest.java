@@ -19,7 +19,7 @@ public class BitlyContextLoggedOutTest {
 	public BitlyContext context2;
 
 	@Before
-	public void createScoreboard()
+	public void createContext()
 	{
 		context = new BitlyContext(new MockTextReaderTrue());
 		context2 = new BitlyContext(new MockTextReaderFalse());

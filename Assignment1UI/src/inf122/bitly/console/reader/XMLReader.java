@@ -51,7 +51,6 @@ public class XMLReader implements XMLReaderInterface{
 		{
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();		
-			System.out.println(shortURL);
 			InputStream stream = shortURL.openStream();
 			Document doc = dBuilder.parse(stream);
 			doc.getDocumentElement().normalize();

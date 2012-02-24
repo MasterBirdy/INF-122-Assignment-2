@@ -56,6 +56,8 @@ public class CommandParser
 		parsers.put("EXPAND", new ExpandCommandParser());
 		parsers.put("HOUR", new HourCommandParser());
 		parsers.put("WEEK", new WeekCommandParser());
+		parsers.put("WATCH", new WatchCommandParser());
+		parsers.put("UNWATCH", new UnwatchCommandParser());
 		knownCommandParsers = Collections.unmodifiableMap(parsers);
 	}
 	

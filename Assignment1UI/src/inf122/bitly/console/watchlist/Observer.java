@@ -16,13 +16,13 @@ public class Observer implements ObserverInterface {
 	@Override
 	public String hour() 
 	{
-		return shortURL + " - " + xmlr.parseHour(shortURL) + " clicks";
+		return xmlr.parseHour(shortURL) + " clicks" + " - " + shortURL;
 	}
 
 	@Override
 	public String week() 
 	{
-		return shortURL + " - " + xmlr.parseWeek(shortURL) + " clicks";
+		return xmlr.parseWeek(shortURL) + " clicks" + " - " + shortURL;
 	}
 
 	@Override
